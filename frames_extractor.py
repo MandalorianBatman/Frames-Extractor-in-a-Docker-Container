@@ -38,7 +38,8 @@ class videoUtility():
                     cv2.imshow("Video Source (Press 'Q' to quit)", frame)
                     if frame_no % frames_to_skip == 0:
                         file_name = datetime.now().strftime('%H%M%S-%m%d%Y')
-                        cv2.imwrite(f'{self.output_path}/img-{file_name}-{int(frame_no)}.jpg', frame)
+                        cv2.imwrite(f'{self.output_path}/img-{file_name}-{frame_no}.jpg', frame)
+                        print(f'Frame no {frame_no} saved.')
                 if cv2.waitKey(1) & 0xFF == ord('q'):
                     break
                 if frame_no > 1000: break
@@ -54,14 +55,15 @@ class videoUtility():
                 else:
                     frame_no = self.cap.get(1)
                     file_name = datetime.now().strftime('%H%M%S-%m%d%Y')
-                    cv2.imwrite(f'{self.output_path}/img-{file_name}-{int(frame_no)}.jpg', frame)
+                    cv2.imwrite(f'{self.output_path}/img-{file_name}-{frame_no}.jpg', frame)
+                    print(f'Frame no {frame_no} saved.')
                     self.cap.set(1, (frame_no + (frames_to_skip - 1)))
         except Exception as e:
             print(e)
 
 def main():
     video_source_input = str(input("\nEnter the Path for video (Leave blank for Video Camera): \n"))
-    video_source = video_source_input if video_source_input else None
+    video_source = video_source_input if video_source_input else 0
     
     output_path_input = str(input("\nEnter the Path for output folder (Leave blank for using current directory): \n"))
     output_path = output_path_input if output_path_input else None

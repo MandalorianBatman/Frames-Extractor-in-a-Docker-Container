@@ -6,8 +6,8 @@ services:
       - ./source:/usr/src/app/source
     # devices: 
       # - /dev/video0:/dev/video0
-    command: bash
-    stdin_open: true
-    tty: true
+    # command: bash
+    # stdin_open: true
+    # tty: true
 volumes: 
   source:
